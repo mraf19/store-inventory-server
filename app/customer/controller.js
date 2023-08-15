@@ -90,7 +90,7 @@ const createCustomer = async (req, res, next) => {
   }
 };
 
-const updateItem = async (req, res, next) => {
+const updateCustomer = async (req, res, next) => {
   try {
     const { id } = req.params;
     let payload = req.body;
@@ -196,4 +196,11 @@ const deleteCustomer = async (req, res, next) => {
 
     next(err);
   }
+};
+
+module.exports = {
+  getCustomer,
+  createCustomer,
+  updateCustomer,
+  deleteCustomer,
 };

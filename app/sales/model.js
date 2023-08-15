@@ -10,7 +10,11 @@ const SalesSchema = mongoose.Schema(
       type: Date,
       default: Date.now(),
     },
-    item: [
+    customer: {
+      type: mongoose.SchemaTypes.ObjectId,
+      ref: "Customer",
+    },
+    items: [
       {
         type: mongoose.SchemaTypes.ObjectId,
         ref: "Item",

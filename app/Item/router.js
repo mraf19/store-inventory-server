@@ -10,10 +10,10 @@ router.post(
   itemController.createItem
 );
 router.put(
-  "/otem/:id",
+  "/item/:id",
   multer({ dest: os.tmpdir() }).single("image"),
   itemController.updateItem
 );
-router.delete("/itemm/:id", itemController.deleteItem);
+router.delete("/item/:id", itemController.deleteItem);
 
 module.exports = router;

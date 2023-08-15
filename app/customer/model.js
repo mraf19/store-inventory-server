@@ -20,7 +20,7 @@ const CustomerSchema = mongoose.Schema(
     },
     tipe_diskon: {
       type: String,
-      enum: ["persentase", "fix diskon"],
+      enum: ["persentase", "fix_diskon"],
       default: "persentase",
     },
     ktp: {
