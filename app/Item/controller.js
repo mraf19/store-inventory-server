@@ -114,7 +114,7 @@ const updateItem = async (req, res, next) => {
       src.on("end", async () => {
         try {
           let item = await Item.findById(id);
-          const currentImage = `${config.rootPath}/public/images/products/${item.image_url}`;
+          const currentImage = `${config.rootPath}/public/images/products/${item.barang}`;
 
           if (fs.existsSync(currentImage)) {
             fs.unlinkSync(currentImage);
@@ -175,7 +175,7 @@ const deleteItem = async (req, res, next) => {
   try {
     let item = await Item.findByIdAndDelete({ _id: req.params.id });
 
-    let currentImage = `${config.rootPath}/public/images/products/${item.image_url}`;
+    let currentImage = `${config.rootPath}/public/images/products/${item.barang}`;
     if (fs.existsSync(currentImage)) {
       fs.unlinkSync(currentImage);
     }
