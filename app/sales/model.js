@@ -1,31 +1,36 @@
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
 
-const SalesSchema = mongoose.Schema({
+const SalesSchema = mongoose.Schema(
+  {
     kode_transaksi: {
-        type: String,
-        required: true
+      type: String,
+      required: true,
     },
     tanggal_transaksi: {
-        type: Date,
-        default: Date.now()
+      type: Date,
+      default: Date.now(),
     },
-    item:[{
+    item: [
+      {
         type: mongoose.SchemaTypes.ObjectId,
-        ref: "Item"
-    }],
+        ref: "Item",
+      },
+    ],
     qty: {
-        type: Number,
-        default: 0
+      type: Number,
+      default: 0,
     },
     total_diskon: {
-        type: Number
+      type: Number,
     },
     total_harga: {
-        type: Number
+      type: Number,
     },
     total_bayar: {
-        type: Number
-    }
-}, {timestamps: true})
+      type: Number,
+    },
+  },
+  { timestamps: true }
+);
 
-module.exports = mongoose.model("Sales", SalesSchema)
+module.exports = mongoose.model("Sales", SalesSchema);
