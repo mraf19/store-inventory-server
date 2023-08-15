@@ -27,8 +27,8 @@ const createSales = async (req, res, next) => {
     const customer = awaitCustomer.find({ _id: req.body.customer });
 
     const listItem = payload.items.map(async (item) => {
-      const item = await Item.find({ _id: item });
-      return item;
+      const itemMap = await Item.find({ _id: item });
+      return itemMap;
     });
 
     payload.qty = listItem.length;
