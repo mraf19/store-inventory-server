@@ -33,11 +33,10 @@ const createSales = async (req, res, next) => {
 
     payload.qty = listItem.length;
     payload.total_diskon = customer.diskon;
-    payload.total_harga = listItem
-      .map((item) => {
-        return item.harga_satuan;
-      })
-      .reduce((current, total) => current + total);
+    payload.total_harga = listItem.reduce(
+      (total, current) => total + current.harga_satuan,
+      0
+    );
     if (customer.tipe_diskon === "persentase") {
       payload.total_bayar =
         payload.total_harga - payload.total_harga * payload.total_diskon;
