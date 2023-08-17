@@ -4,6 +4,7 @@ const multer = require("multer");
 const os = require("os");
 
 router.get("/customer", customerController.getCustomer);
+router.get("/customer/:id", customerController.getCustomerById);
 router.post(
   "/customer",
   multer({ dest: os.tmpdir() }).single("image"),

@@ -4,6 +4,7 @@ const multer = require("multer");
 const os = require("os");
 
 router.get("/item", itemController.getItem);
+router.get("/item/:id", itemController.getItemById);
 router.post(
   "/item",
   multer({ dest: os.tmpdir() }).single("image"),

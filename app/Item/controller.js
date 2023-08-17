@@ -22,6 +22,25 @@ const getItem = async (req, res, next) => {
   }
 };
 
+const getItemById = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    let items = await Item.find({ _id: id });
+
+    res.status(200).json({ data: items });
+  } catch (err) {
+    if (err && err.name === "ValidationError") {
+      return res.json({
+        error: 1,
+        message: err.message,
+        fields: err.errors,
+      });
+    }
+
+    next(err);
+  }
+};
+
 const createItem = async (req, res, next) => {
   try {
     let payload = req.body;
@@ -201,4 +220,5 @@ module.exports = {
   createItem,
   updateItem,
   deleteItem,
+  getItemById,
 };

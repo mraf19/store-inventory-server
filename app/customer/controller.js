@@ -22,6 +22,25 @@ const getCustomer = async (req, res, next) => {
   }
 };
 
+const getCustomerById = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    let customer = await Customer.find({ _id: id });
+
+    res.status(200).json({ data: customer });
+  } catch (err) {
+    if (err && err.name === "ValidationError") {
+      return res.json({
+        error: 1,
+        message: err.message,
+        fields: err.errors,
+      });
+    }
+
+    next(err);
+  }
+};
+
 const createCustomer = async (req, res, next) => {
   try {
     let payload = req.body;
@@ -203,4 +222,5 @@ module.exports = {
   createCustomer,
   updateCustomer,
   deleteCustomer,
+  getCustomerById,
 };
