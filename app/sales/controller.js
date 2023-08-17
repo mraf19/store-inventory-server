@@ -5,7 +5,8 @@ const { v4: uuidv4 } = require("uuid");
 
 const getSales = async (req, res, next) => {
   try {
-    const sales = await Sales.find().populate("item");
+    const sales = await Sales.find().populate( "items")
+    .populate("customer")
 
     res.status(200).json({ data: sales });
   } catch (err) {
