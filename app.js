@@ -13,7 +13,7 @@ const CustomerRoute = require("./app/Customer/router");
 const SalesRoute = require("./app/Sales/router");
 
 var app = express();
-app.use(cors);
+app.use(cors());
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
