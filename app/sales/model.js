@@ -7,8 +7,7 @@ const SalesSchema = mongoose.Schema(
       required: true,
     },
     tanggal_transaksi: {
-      type: Date,
-      default: Date.now(),
+      type: String,
     },
     customer: {
       type: mongoose.SchemaTypes.ObjectId,

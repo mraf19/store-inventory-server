@@ -21,7 +21,7 @@ const CustomerSchema = mongoose.Schema(
       required: [true, "alamat harus diisi!"],
     },
     diskon: {
-      type: String,
+      type: Number,
     },
     tipe_diskon: {
       type: String,
