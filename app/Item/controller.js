@@ -139,10 +139,17 @@ const updateItem = async (req, res, next) => {
             fs.unlinkSync(currentImage);
           }
 
-          item = await Item.findByIdAndUpdate(id, payload, {
-            new: true,
-            runValidators: true,
-          });
+          item = await Item.findByIdAndUpdate(
+            id,
+            {
+              ...payload,
+              barang: filename,
+            },
+            {
+              new: true,
+              runValidators: true,
+            }
+          );
 
           res.status(200).json({
             message: "success",

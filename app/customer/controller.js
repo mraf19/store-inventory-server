@@ -140,10 +140,17 @@ const updateCustomer = async (req, res, next) => {
             fs.unlinkSync(currentImage);
           }
 
-          customer = await Customer.findByIdAndUpdate(id, payload, {
-            new: true,
-            runValidators: true,
-          });
+          customer = await Customer.findByIdAndUpdate(
+            id,
+            {
+              ...payload,
+              ktp: filename,
+            },
+            {
+              new: true,
+              runValidators: true,
+            }
+          );
 
           res.status(200).json({
             message: "success",
@@ -196,7 +203,7 @@ const deleteCustomer = async (req, res, next) => {
   try {
     let customer = await Customer.findByIdAndDelete({ _id: req.params.id });
 
-    let currentImage = `${config.rootPath}/public/images/customer/${item.ktp}`;
+    let currentImage = `${config.rootPath}/public/images/customer/${customer.ktp}`;
     if (fs.existsSync(currentImage)) {
       fs.unlinkSync(currentImage);
     }

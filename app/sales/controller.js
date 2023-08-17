@@ -1,6 +1,7 @@
 const Sales = require("./model");
 const Item = require("../Item/model");
 const Customer = require("../Customer/model");
+const { v4: uuidv4 } = require("uuid");
 
 const getSales = async (req, res, next) => {
   try {
@@ -24,15 +25,16 @@ const createSales = async (req, res, next) => {
   try {
     let payload = req.body;
 
-    const customer = awaitCustomer.find({ _id: req.body.customer });
+    const customer = await Customer.find({ _id: req.body.customer });
 
     const listItem = payload.items.map(async (item) => {
       const itemMap = await Item.find({ _id: item });
       return itemMap;
     });
 
+    payload.kode_transaksi = uuidv4();
     payload.qty = listItem.length;
-    payload.total_diskon = customer.diskon;
+    payload.total_diskon = Number(customer.diskon) / 100;
     payload.total_harga = listItem.reduce(
       (total, current) => total + current.harga_satuan,
       0

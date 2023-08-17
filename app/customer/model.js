@@ -7,6 +7,11 @@ const CustomerSchema = mongoose.Schema(
       require: [true, "nama harus diisi!"],
       minLength: [3, "nama paling tidak harus 3 karakter!"],
     },
+    contact: {
+      type: String,
+      require: [true, "contact harus diisi!"],
+      minLength: [3, "contact paling tidak harus 3 karakter!"],
+    },
     email: {
       type: String,
       required: [true, "email harus diisi!"],
